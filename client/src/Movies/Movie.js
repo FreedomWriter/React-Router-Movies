@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Movie = props => {
+const Movie = (props) => {
   const [movie, setMovie] = useState();
+  console.log({ props });
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -11,10 +12,10 @@ const Movie = props => {
     // You will NEED to add a dependency array to this effect hook
     axios
       .get(`http://localhost:5000/api/movies/${id}`)
-      .then(response => {
+      .then((response) => {
         setMovie(response.data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, [props.match.params.id]);
@@ -43,7 +44,7 @@ const Movie = props => {
           Metascore: <strong>{metascore}</strong>
         </div>
         <h3>Actors</h3>
-        {stars.map(star => (
+        {stars.map((star) => (
           <div key={star} className="movie-star">
             {star}
           </div>
